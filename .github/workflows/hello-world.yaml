@@ -1,9 +1,19 @@
 
 name: Hello World Workflow
-run-name: Hello World Workflow run
+run-name: added event in workflow
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+
+  #workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'  # Runs every day at midnight
 
 jobs:
   job1:
