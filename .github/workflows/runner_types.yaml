@@ -1,0 +1,31 @@
+name: Github Runner Types
+
+run-name: github_runner_types
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  job1:
+    name: runs_on_ubuntu
+    runs-on: ubuntu-24.04
+    steps:
+      - name: run echo
+        run: |
+          echo $HOSTNAME
+  job2:
+    name: runs_on_mac
+    runs-on: macos-14
+    steps:
+      - name: run echo on mac
+        run: |
+          echo $HOSTNAME
+  job3:
+    name: runs_on_windows
+    runs-on: windows-2025
+    steps:
+      - name: run echo on windows
+        run: |
+          echo hostname
+          dir
+      
