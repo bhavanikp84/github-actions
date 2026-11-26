@@ -3,18 +3,7 @@ name: Hello World Workflow
 run-name: added event in workflow
 
 on:
-  push:
-    branches:
-      - main
-      - "example-branch/*"
-  pull_request:
-    branches:
-      - main
-    types: [opened, synchronize, reopened]
-
-  #workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'  # Runs every day at midnight
+ workflow_dispatch:   
   
 env:
    WORKFLOW_VAR: I_AM_WORKFLOW_SCOPED
