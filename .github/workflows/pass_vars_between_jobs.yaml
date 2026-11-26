@@ -21,8 +21,10 @@ jobs:
        run: |
          echo "FOO (set via GITHUB_ENV): $FOO"
          echo "foo (step output): ${{ steps.generate-foo.outputs.foo }}"
+         
   consumer:
     runs-on: ubuntu-24.04
+    needs: producer
     env:
       HELLO: "WORLD"
     steps:
