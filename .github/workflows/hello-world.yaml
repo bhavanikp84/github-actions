@@ -42,6 +42,11 @@ jobs:
     steps:
       - name: echo
         run: echo "In Job 2, Hello, World!"
+      - name: env var list
+        run: |
+          echo "Workflow scoped variable: $WORKFLOW_VAR"
+          echo "Job scoped variable: $JOB_VAR"
+          echo "Step scoped variable: $STEP_VAR"
 
   job3:
     needs: 
@@ -51,6 +56,11 @@ jobs:
     steps:
         - name: echo
           run: echo "In Job 3, Hello, World!"
+        - name: env var list
+          run: |
+            echo "Workflow scoped variable: $WORKFLOW_VAR"
+            echo "Job scoped variable: $JOB_VAR"
+            echo "Step scoped variable: $STEP_VAR"
   job4:
     needs: 
         - job3        
@@ -58,5 +68,11 @@ jobs:
     steps:
         - name: echo
           run: echo "In Job 4, Hello, World!"
+        - name: env var list
+          run: |
+            
+              echo "Workflow scoped variable: $WORKFLOW_VAR"
+              echo "Job scoped variable: $JOB_VAR"
+              echo "Step scoped variable: $STEP_VAR"
       
     
