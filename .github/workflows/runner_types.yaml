@@ -15,7 +15,7 @@ jobs:
           echo $HOSTNAME
   job2:
     name: runs_on_mac
-    runs-on: macos-14
+    runs-on: macos-latest
     steps:
       - name: run echo on mac
         run: |
