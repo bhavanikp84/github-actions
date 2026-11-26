@@ -1,0 +1,29 @@
+name: Hello World Workflow
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Hello World Step
+        run: echo "Hello, World!"
+
+  python-test:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Preserve Node.js on PATH
+        run: echo "$(dirname "$(command -v node)")" >> "$GITHUB_PATH"
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' 
+               
+      - name: Run python application
+        run: python app.py
