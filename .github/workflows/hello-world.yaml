@@ -13,6 +13,7 @@ jobs:
         shell: bash
 
   say-hello-inline-python:
+    needs: hello-world
     runs-on: ubuntu-24.04
     steps:
       - name: Say Hello Inline Python
@@ -24,6 +25,7 @@ jobs:
         shell: bash
 
   say-hello-action:
+    needs: say-hello-inline-python
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/hello-world-javascript-action@v1
