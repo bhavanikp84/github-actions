@@ -10,20 +10,22 @@ jobs:
     steps:
       - name: Hello World Step
         run: echo "Hello, World!"
+        shell: bash
 
-  python-test:
+  say-hello-inline-python:
     runs-on: ubuntu-24.04
     steps:
-      - name: Preserve Node.js on PATH
-        run: echo "$(dirname "$(command -v node)")" >> "$GITHUB_PATH"
+      - name: Say Hello Inline Python
+        run: |
+          python -c "print('Hello from inline Python!')"
+      - run : print("Hello from inline Python!")
+        shell: python
+      - run: echo "Hello from inline Python!"
+        shell: bash
 
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+  say-hello-action:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/hello-world-javascript-action@v1
         with:
-          python-version: '3.11' 
-               
-      - name: Run python application
-        run: python app.py
+          who-to-greet: 'World'
