@@ -21,4 +21,15 @@ jobs:
        run: |
          echo "FOO (set via GITHUB_ENV): $FOO"
          echo "foo (step output): ${{ steps.generate-foo.outputs.foo }}"
+  consumer:
+    runs-on: ubuntu-24.04
+    env:
+      HELLO: "WORLD"
+    steps:
+      - name: Inspect values inside consumer
+        run: |
+          echo "Value from producer: ${{ needs.producer.outputs.foo }}"
+          echo "FOO in consumer: ${FOO:-<UNSET>}"
+          
+      
     
