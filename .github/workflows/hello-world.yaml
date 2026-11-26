@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - "example-branch/*"
   pull_request:
     branches:
       - main
@@ -14,16 +15,28 @@ on:
   #workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'  # Runs every day at midnight
+  
+env:
+   WORKFLOW_VAR: I_AM_WORKFLOW_SCOPED
 
 jobs:
   job1:
     runs-on: ubuntu-latest
+    env:
+      JOB_VAR: I_AM_JOB_SCOPED
     steps:
       - name: echo
         run: echo "Hello, World!"
       - name: script
         run: print("Hello, World!")
         shell: python
+      - name: echo env var
+        run: |
+          echo "Workflow scoped variable: $WORKFLOW_VAR"
+          echo "Job scoped variable: $JOB_VAR"
+          echo "Step scoped variable: $STEP_VAR"
+        env:
+          STEP_VAR: I_AM_STEP_SCOPED
   job2:
     runs-on: ubuntu-latest
     steps:
